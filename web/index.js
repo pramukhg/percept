@@ -44,6 +44,20 @@ app.post("/getQR", function(request, response) {
     }*/
 });
 
+const vitalsToStore = 10;
+var lastIndex = 0;
+app.post("/postVitals", function(request, response) {
+    currTime = (Math.round(new Date().getTime()/1000));
+    if (request.body.patientID) {
+        firebase.database().ref('Patients/' + request.body.patientID + '/vitals_' + lastIndex).set({
+            temp: request.body.temp,
+            heartRate: request.body.heartRate,
+            timestamp: currTime
+        });
+        lastIndex = (lastIndex + 1) % vitalsToStore;
+        response.json({"Message": "successfully posted vitals"});
+    }
+});
 
 var port = process.env.PORT || 3000;
 
