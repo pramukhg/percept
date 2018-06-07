@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -64,12 +65,23 @@ public class MainActivity extends Activity {
 
         });
         heartRateGraph.addSeries(heartRateSeries);
+        heartRateGraph.getViewport().setYAxisBoundsManual(true);
+        heartRateGraph.getViewport().setMinY(65);
+        heartRateGraph.getViewport().setMaxY(90);
+        heartRateGraph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+        heartRateGraph.getGridLabelRenderer().setGridStyle( GridLabelRenderer.GridStyle.NONE );
+
 
         GraphView tempGraph = (GraphView) findViewById(R.id.temp);
         tempSeries = new LineGraphSeries<DataPoint>(new DataPoint[] {
 
         });
         tempGraph.addSeries(tempSeries);
+        tempGraph.getViewport().setYAxisBoundsManual(true);
+        tempGraph.getViewport().setMinY(90);
+        tempGraph.getViewport().setMaxY(100);
+        tempGraph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+
     }
 
     @Override

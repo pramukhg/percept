@@ -96,6 +96,11 @@ public class Patient {
                 return (int)(o1.getX() - o2.getX());
             }
         });
+
+        for (int i = 0; i < normalizedTimestamps.length; i ++){
+            DataPoint val = retVal.get(i);
+            retVal.set(i, new DataPoint(i, val.getY()));
+        }
         return retVal.toArray(new DataPoint[retVal.size()]);
     }
 
@@ -113,6 +118,11 @@ public class Patient {
                 return (int)(o1.getX() - o2.getX());
             }
         });
+
+        for (int i = 0; i < normalizedTimestamps.length; i ++){
+            DataPoint val = retVal.get(i);
+            retVal.set(i, new DataPoint(i, val.getY()));
+        }
         return retVal.toArray(new DataPoint[retVal.size()]);
     }
 
