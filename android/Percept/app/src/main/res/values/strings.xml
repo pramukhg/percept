@@ -3,4 +3,7 @@
     <string name="title_activity_main">Hello World Immersion</string>
     <string name="hello_world">nice meme</string>
     <string name="scan_code">Scan a QR Code</string>
+    <string name="look_up_patient">Look Up a Patient</string>
+    <string name="record_note">Record a Note</string>
+
 </resources>
