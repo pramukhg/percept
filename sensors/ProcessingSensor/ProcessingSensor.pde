@@ -1,13 +1,12 @@
-/*  CSE176A Processing (Input Sample)
- *   This example code demonstrates how to receive data between from the Arduino
- *   to the Processing client via Serial Communication (you can read about Serial Protocol here: 
- *   https://learn.sparkfun.com/tutorials/serial-communication/all)
- *   In this example, we transmit the number 3.14 from the Arduino to the Host PC and print this
- *   number to the processing terminal. THIS REQUIRES THE PROVIDED ARDUINO CODE TO BE
- *   INSTALLED ON THE ARDUINO TO WORK!
- *   
+/*
+    Pramukh Govindaraju
+    Aakash Kesavarapu
+    Chirag Toprani
+    CSE 176a - Healthcare Robotics - SP 18
+    Processing - pushes sensor data to node
+    Sources: Processing documentation, code from L Riek, D Chan from CSE 176A
+    Uses Processing HTTP Request library
 */
-
 import processing.serial.*;
 import http.requests.*;
 
@@ -38,14 +37,28 @@ void draw() //The "main" function in processing is "draw"
       
       println(str(fval));        // Print it out in the console
       
-      PostRequest post = new PostRequest("http://localhost:3000/postVitals?patientID=" + "91476455-7bdf-b892-406b-2f6a657d3e57", "utf-8");
+      // request instance to send requests for patient 1
+      PostRequest post = new PostRequest("http://localhost:3000/postVitals", "utf-8");
       //post.addHeader("Content-Type", "application/json");
       post.addData("patientID", "91476455-7bdf-b892-406b-2f6a657d3e57");
-      post.addData("temp", str(fval));
-      post.addData("heartRate", "70");
+      post.addData("heartRate", str(fval));
+      float temp = 99.1;
+      post.addData("temp", str(temp));
+      println(str(temp));
       post.send();
       println("Reponse Content: " + post.getContent());
-      //println("Reponse Content-Length Header: " + post.getHeader("Content-Length"));
+      
+      // request instance to send requests for patient 2
+      PostRequest post2 = new PostRequest("http://localhost:3000/postVitals?patientID=", "utf-8");
+      //post.addHeader("Content-Type", "application/json");
+      post2.addData("patientID", "7f29e0cf-d344-4a71-ba70-c8def387a17c");
+      post2.addData("heartRate", str(fval));
+      float temp2 = 98.6;
+      post2.addData("temp", str(temp2));
+      println(str(temp2));
+      post2.send();
+      println("Reponse Content2: " + post.getContent());
+      
     }
   }
   

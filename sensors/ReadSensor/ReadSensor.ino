@@ -1,9 +1,11 @@
-/* CSE176A Read Sensor Example Code 
- * This code reads an analog voltage signal from pin A0. This analog voltage is
- * then converted to a digital signal, which is represented by an unsigned 10-bit
- * integer. For instance, if we used a 5V sensor, 0V would map to a numeric value of
- * "0" and 5V would map to a numeric value of 1023.
- *
+/*
+    Pramukh Govindaraju
+    Aakash Kesavarapu
+    Chirag Toprani
+    CSE 176a - Healthcare Robotics - SP 18
+    Read sensor code 
+    Sources: Processing documentation, code from L Riek, D Chan from CSE 176A
+    Uses Processing HTTP Request library
 */
 
 int sensorPin = A1;   // This maps to pin A0 (Analog Pin 0)
@@ -29,5 +31,5 @@ void loop() {
   Serial.println(F);
 
   // Delay for output clarity
-  delay(10000);
+  delay(500);
 }
