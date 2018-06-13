@@ -1,6 +1,9 @@
 /* Chirag Toprani
    PERCEPT, CSE 176A
    Main activity where all the android navigation and logic is contained
+   Used open source libraries:
+        GraphView and ZXing for QR codes
+
  */
 
 package io.percept.percept;
