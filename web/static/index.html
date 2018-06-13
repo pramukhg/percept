@@ -1,3 +1,12 @@
+<!--
+    Pramukh Govindaraju
+    Aakash Kesavarapu
+    Chirag Toprani
+    CSE 176a - Healthcare Robotics - SP 18
+    Page to get QR code based on patient
+    Sources: Firebase documentation
+-->
+
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +15,7 @@
 </head>
 
 <body>
-    
+    <!--Basic HTML form-->
     First name:<br>
     <input type="text" name="firstname" id="fname" required><br>
     Last name:<br>
@@ -17,7 +26,7 @@
 
     <br>
 
-    <img src="" id="qrcode" style="DISPLAY: none" />
+    <img src="" id="qrcode" style="DISPLAY: none" height="400" width="400" />
 
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
@@ -37,7 +46,9 @@
     </script>
 
     <script>
+        // Submit form to firebase, get repsonse back form database
         function submitForm() {
+            // get individual values from form
             firstName = document.getElementById("fname").value;  
             lastName = document.getElementById("lname").value;  
             dob = document.getElementById("dob").value.split("/");  
@@ -52,17 +63,21 @@
 
                     var patientsRef = firebase.database().ref('/Patients/')
                     patientsRef.child(id).once('value', function (snapshot2) {
+                        console.log(snapshot2)
                         if (snapshot2.exists()) {
+                            // show QR code (returned as base64 png)
                             code = snapshot2.child('qrcode').val();
                             pre = "data:image/png;base64, "
                             document.getElementById("qrcode").src = pre + code;
                             document.getElementById("qrcode").style.display="block";
                         } else {
-                            window.location.href = '/generateQR.html';
+                            //window.location.href = '/generateQR.html';
                         }
                     });
 
                 } else {
+                    // if not found, redirecto to error page
+                    //console.log(patientsRef)
                     window.location.href = '/error.html';
                 }
             });
