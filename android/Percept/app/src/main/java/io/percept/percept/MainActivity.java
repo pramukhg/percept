@@ -1,3 +1,8 @@
+/* Chirag Toprani
+   PERCEPT, CSE 176A
+   Main activity where all the android navigation and logic is contained
+ */
+
 package io.percept.percept;
 
 import com.google.android.glass.media.Sounds;
@@ -171,6 +176,8 @@ public class MainActivity extends Activity {
         DatabaseReference myRef = database.getReference("Patients");
         if (listener != null)
             myRef.removeEventListener(listener);
+
+        //firebase query with value listener
         listener = myRef.orderByChild("firstName").startAt(name).endAt(name).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -254,12 +261,15 @@ public class MainActivity extends Activity {
         }
         return super.onCreatePanelMenu(featureId, menu);
     }
+
+    //default
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
+    //When a menu item is selection start the appropriate library
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         // check to make sure feature ID is for voice

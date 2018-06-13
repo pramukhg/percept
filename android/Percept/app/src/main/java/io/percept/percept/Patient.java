@@ -1,3 +1,8 @@
+/* Chirag Toprani
+   PERCEPT, CSE 176A
+   Object class to encapsulate a patient
+ */
+
 package io.percept.percept;
 
 import android.util.Log;
